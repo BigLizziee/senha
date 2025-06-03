@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 100px; }
+    input { display: block; margin: 10px auto; padding: 8px; width: 250px; }
+    button { padding: 8px 16px; }
+  </style>
+</head>
+<body>
+  <h1>Login</h1>
+  <input type="email" id="e" placeholder="Email" />
+  <input type="password" id="s" placeholder="Senha" />
+  <button onclick="l()">Entrar</button>
+
+  <script>
+    function l() {
+      const email = document.getElementById("e").value;
+      const senha = document.getElementById("s").value;
+
+      // Pega os dados de dentro da homes.html via iframe escondido
+      fetch("homes.html")
+        .then(res => res.text())
+        .then(html => {
+          const emailCorreto = html.match(/emailAutorizado = "(.*?)"/)?.[1];
+          const senhaCorreta = html.match(/senhaAutorizada = "(.*?)"/)?.[1];
+
+          if (email === emailCorreto && senha === senhaCorreta) {
+            sessionStorage.setItem("logado", "sim");
+            window.location.href = "homes.html";
+          } else {
+            alert("Email ou senha inválidos.");
+          }
+        });
+    }
+  </script>
+</body>
+</html>

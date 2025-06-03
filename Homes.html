@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Área Restrita</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 100px; }
+  </style>
+  <script>
+  
+    if (sessionStorage.getItem("logado") !== "sim") {
+      alert("Acesso não autorizado. Faça login.");
+      window.location.href = "index.html";
+    }
+
+    const emailAutorizado = "lizziedsousa@gmail.com";
+    const senhaAutorizada = "Amendoim13_";
+  </script>
+</head>
+<body>
+  <h1>Bem-vindo à Área Restrita!</h1>
+  <p>Você está autenticado.</p>
+</body>
+</html>
